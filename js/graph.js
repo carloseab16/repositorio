@@ -8,7 +8,7 @@ Plotly.d3.csv("data.csv ", function(err, rows){
 var trace1 = {
   type: "scatter",
   mode: "lines",
-  name: 'AAPL High',
+  name: 'TempOut',
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'TempOut'),
   line: {color: '#17BECF'}
@@ -17,50 +17,68 @@ var trace1 = {
 var trace2 = {
   type: "scatter",
   mode: "lines",
-  name: 'AAPL Low',
+  name: 'HiTemp',
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'LowTemp'),
-  line: {color: '#cf1762'}
+  y: unpack(rows, 'HiTemp'),
+  line: {color: '#7F7F7F'}
 }
 
 
 var trace3 = {
   type: "scatter",
   mode: "lines",
-  name: 'AAPL Low',
+  name: 'LowTemp',
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'LowTemp'),
   line: {color: '#cf1762'}
 }
 
-var data = [trace1,trace2,trace3];
+var trace4 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'HeatIndex',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'HeatIndex'),
+  line: {color: '#cf2817'}
+}
+
+var trace5 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'THW Index',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'THW Index'),
+  line: {color: '#1762cf'}
+}
+
+var data = [trace1,trace2,trace3,trace4,trace5];
 
 var layout = {
-  title: 'Time Series with Rangeslider',
+  title: 'Series temporales de Ucayali (2012 -2016)',
   xaxis: {
     autorange: true,
     range: ['2012-01-31', '2017-01-01'], 
     rangeselector: {buttons: [
         {
           count: 1,
-          label: '1m',
+          label: '1mes',
           step: 'month',
           stepmode: 'backward'
         },
         {
           count: 6,
-          label: '6m',
+          label: '6meses',
           step: 'month',
           stepmode: 'backward'
         },
-        {step: 'all'}
+        {step: 'todos'}
       ]},
       rangeslider: {range: ['2012-01-31', '2017-01-01']},
     type: 'date'
   },
   yaxis: {
     autorange: true,
-    range: [20.75898437500001,40.75898437500001], 
+    range: [1.75898437500001,40.75898437500001], 
     type: 'linear'
   }
 };
